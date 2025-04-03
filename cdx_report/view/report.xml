@@ -1,0 +1,26 @@
+<odoo>
+    <data>
+        <!-- Paper Format -->
+        <record id="paperformat_a5_custom" model="report.paperformat">
+            <field name="name">A5 Custom</field>
+            <field name="default" eval="False"/>
+            <field name="format">A5</field> <!-- Keep this and remove width/height -->
+            <field name="margin_top">5</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">10</field>
+            <field name="margin_right">10</field>
+        </record>
+
+        <!-- Report Action -->
+        <record id="action_report_custom_report" model="ir.actions.report">
+            <field name="name">Custom Report</field>
+            <field name="model">purchase.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">cdx_report.report_rfq_template</field>
+            <field name="report_file">cdx_report.report_rfq_template</field>
+            <field name="binding_model_id" ref="model_purchase_order"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="paperformat_a5_custom"/>
+        </record>
+    </data>
+</odoo>

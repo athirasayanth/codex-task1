@@ -1,0 +1,224 @@
+<odoo>
+    <template id="report_rfq_template">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="web.html_container">
+                <div style="margin-top: 5px;">
+                    <table style="width:100%; border-collapse: collapse; ">
+                        <tr>
+                            <td style="border: 1px solid black; padding: 10px; width: 40%; height: 170px;">
+                            <td style="border: 1px solid black; padding: 10px; width: 40%; height: 170px;">
+                                <img t-if="res_company.logo" t-att-src="image_data_uri(res_company.logo)"
+                                     style="width:100%; height:100%;"/>
+                            </td>
+                            <td style="border: 1px solid black; padding: 10px; width: 30%; height: 170px; vertical-align: top;">
+                                <div style="margin-left: 10px; padding-left: 5px;">
+                                    <strong style="color: #03dffc;">Supplier:</strong>
+                                    <br/>
+                                    <span t-esc="o.partner_id.name"/>
+                                </div>
+                            </td>
+
+                            <td style="border: 1px solid black; padding: 10px; width: 30%; height: 170px;vertical-align: top;">
+                                <div>
+                                    <strong style="color: #03dffc;">Ship to:</strong>
+                                    <br/>
+                                    <div style="margin-left: 10px; padding-left: 5px;">
+                                        <strong>
+                                            <span t-esc="o.company_id.name"/>
+                                        </strong>
+                                        <br/>
+                                        <t t-if="o.company_id.street">
+                                            <span t-esc="o.company_id.street"/>
+                                            <br/>
+                                        </t>
+                                        <t t-if="o.company_id.street2">
+                                            <span t-esc="o.company_id.street2"/>
+                                            <br/>
+                                        </t>
+                                        <t t-if="o.company_id.city">
+                                            <span t-esc="o.company_id.city"/>
+                                            <br/>
+                                        </t>
+                                        <t t-if="o.company_id.state_id">
+                                            <span t-esc="o.company_id.state_id.name"/>
+                                            <br/>
+                                        </t>
+                                        <t t-if="o.company_id.country_id">
+                                            <span t-esc="o.company_id.country_id.name"/>
+                                            <br/>
+                                        </t>
+                                        <t t-if="o.company_id.zip">
+                                            <span t-esc="o.company_id.zip"/>
+                                            <br/>
+                                        </t>
+                                        <t t-if="o.company_id.phone">
+                                            <strong>Phone:</strong>
+                                            <span t-esc="o.company_id.phone"/>
+                                            <br/>
+                                        </t>
+                                        <t t-if="o.company_id.email">
+                                            <strong>Email:</strong>
+                                            <span t-esc="o.company_id.email"/>
+                                            <br/>
+                                        </t>
+                                    </div>
+                                </div>
+                            </td>
+
+                        </tr>
+                    </table>
+
+                    <table style="width:100%; border-collapse: collapse;">
+                        <div style="border-left: 1px solid black; border-right: 1px solid black; border-top: 1px solid black; text-align: center; font-size: 18px; font-weight: bold; color: #03dffc; ">
+                            Request for Quotation
+                        </div>
+                        <tr style="border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black;">
+                            <td style="padding: 10px; width: 20%;">
+                                <strong>RFQ N o:</strong>
+                                <span t-esc="o.name"/>
+                            </td>
+                            <td style="padding: 10px; width: 20%;">
+                                <strong>Date:</strong>
+                                <span t-esc="o.env['ir.qweb.field.date'].value_to_html(o.date_order, {'format': 'dd/MM/yyyy'})"/>
+                            </td>
+                            <td style="padding: 10px; width: 20%;">
+                                <strong>MR No:</strong>
+                                <span t-esc="o.mr_no"/>
+                            </td>
+                            <td style="padding: 10px; width: 20%;">
+                                <strong>Currency:AED</strong>
+
+                            </td>
+                            <td style="padding: 10px; width: 20%;">
+                                <strong>Ship by:</strong>
+                            </td>
+                        </tr>
+                    </table>
+
+
+                    <table style="width:100%; border-collapse: collapse;">
+                        <tr>
+                            <td style="border: 1px solid black; padding: 10px;width: 5%"></td>
+                            <td style="border: 1px solid black; padding: 10px; width: 25%; text-align: center; color: #03dffc;">
+                                <strong>Payment Terms:</strong>
+                            </td>
+                            <td style="border: 1px solid black; padding: 10px; width: 35%; text-align: center; color: #03dffc;">
+                                <strong>Delivery Terms:</strong>
+                            </td>
+                            <td style="border: 1px solid black; padding: 10px; width: 35%; text-align: center; color: #03dffc;">
+                                <strong>Job No:</strong>
+                            </td>
+                        </tr>
+                    </table>
+
+
+                    <table style="border: 1px solid black; width: 100%; border-collapse: collapse;">
+                        <tr>
+                            <td style="border: 1px solid black; text-align: center; width: 5%;">
+                                <strong>SI No.</strong>
+                            </td>
+                            <td style="border: 1px solid black; text-align: center; width: 12.5%;">
+                                <strong>Item</strong>
+                            </td>
+                            <td style="border: 1px solid black; text-align: center; width: 12.5%;">
+                                <strong>Description</strong>
+                            </td>
+                            <td style="border: 1px solid black; text-align: center; width: 20%;">
+                                <strong>Remarks</strong>
+                            </td>
+                            <td style="border: 1px solid black; text-align: center; width: 5%;">
+                                <strong>QTY</strong>
+                            </td>
+                            <td style="border: 1px solid black; text-align: center; width: 5%;">
+                                <strong>UOM</strong>
+                            </td>
+                            <td style="border: 1px solid black; text-align: center; width: 5%;">
+                                <strong>Unit</strong>
+                            </td>
+                            <td style="border: 1px solid black; text-align: center; width: 10%;">
+                                <strong>Disc(%)</strong>
+                            </td>
+                            <td style="border: 1px solid black; text-align: center; width: 10%;">
+                                <strong>Line Value(AED)</strong>
+                            </td>
+                            <td style="border: 1px solid black; text-align: center; width: 15%;">
+                                <strong>Delivery Date</strong>
+                            </td>
+                        </tr>
+                        <t t-set="sl_no" t-value="1"/>
+                        <t t-foreach="o.order_line" t-as="line">
+                            <tr>
+                                <td style="border: 1px solid black; text-align: left;">
+                                    <span t-esc="sl_no"/>
+                                </td>
+                                <t t-set="sl_no" t-value="sl_no + 1"/>
+
+                                <td style="border: 1px solid black; text-align: center;">
+                                    <t t-esc="line.product_id.default_code or ''"/>
+                                </td>
+                                <td style="border: 1px solid black; text-align: center;">
+                                    <t t-esc="line.name"/>
+                                </td>
+                                <td style="border: 1px solid black; text-align: center;">
+                                    <t t-esc="o.notes or ''"/>
+                                </td>
+                                <td style="border: 1px solid black; text-align: center;">
+                                    <t t-esc="int(line.product_qty)"/>
+                                </td>
+                                <td style="border: 1px solid black; text-align: center;">
+                                    <t t-esc="line.product_uom.name"/>
+                                </td>
+                                <td style="border: 1px solid black; text-align: center;">
+                                    <t t-esc="int(line.price_unit)"/>
+                                </td>
+                                <td style="border: 1px solid black; text-align: right;">
+                                    <t t-esc="line.discount"/>
+                                </td>
+                                <td style="border: 1px solid black; text-align: right;">
+                                    <t t-esc="'{:.2f}'.format(line.price_subtotal)"/>
+                                </td>
+                                <td style="border: 1px solid black; text-align: center;">
+                                    <span t-esc="o.env['ir.qweb.field.date'].value_to_html(o.date_order, {'format': 'dd/MM/yyyy'})"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
+
+                    <table style="width:100%; border-collapse: collapse;">
+                        <tr style="border: 1px solid black;">
+                            <td style="width: 5%"></td>
+                            <td style=" width: 25%;"></td>
+                            <td style=" width: 35%;"></td>
+                            <td style="border: 1px solid black; text-align: center; width: 10%;">
+                                <strong>Sub-Total</strong>
+
+                            </td>
+                            <td style="border: 1px solid black; text-align: right; width: 10%;">
+                                <t t-esc="'{:.2f}'.format(o.amount_untaxed)"/>
+
+                            </td>
+                            <td style="border: 1px solid black; text-align: center; width: 15%;">
+                            </td>
+                        </tr>
+                    </table>
+                    <table style="width:100%; border-collapse: collapse;">
+                        <tr style="border: 1px solid black;">
+                            <td style="width:65%">
+                                <span t-esc="o.currency_id.amount_to_text(o.amount_total).replace('Rupees', 'AED').replace('Riyals', 'AED').replace('Paise', 'Fils').replace('Cents', 'Fils')"/>
+                            </td>
+                            <td style="border: 1px solid black; text-align: center; width: 10%;">
+                                <strong>Total AED</strong>
+                            </td>
+                            <td style="border: 1px solid black; text-align: right; width: 10%;">
+                                <t t-esc="'{:.2f}'.format(o.amount_total)"/>
+                            </td>
+
+                            <td style="border: 1px solid black; text-align: center; width: 15%;">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
