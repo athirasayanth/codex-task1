@@ -154,7 +154,7 @@
                                 <t t-set="sl_no" t-value="sl_no + 1"/>
 
                                 <td style="border: 1px solid black; text-align: center;">
-                                    <t t-esc="line.product_id.default_code or ''"/>
+                                    <t t-esc="line.product_id.name"/>
                                 </td>
                                 <td style="border: 1px solid black; text-align: center;">
                                     <t t-esc="line.name"/>
